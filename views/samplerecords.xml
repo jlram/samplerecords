@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- VISTAS DE ALBUMES -->
+		
+		<!-- action = mostrar vista por defecto (lista / form)-->
+		<record model="ir.actions.act_window" id="album_list_action">
+			<field name="name">Albumes</field>
+			<field name="res_model">samplerecords.album</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+			<p class="oe_view_nocontent_create">Crear el primer album</p>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="album_form_view">
+			<field name="name">album.form</field>
+			<field name="model">samplerecords.album</field>
+			<field name ="arch" type="xml">
+				<form string="Formulario Album">					
+					<sheet>
+						<!-- He creado dos grupos ya que en Odoo me salia primero la
+						descripción y luego el Título. Tampoco me parece que tenga una
+						importancia grande, pero vaya, aunque no tenga sentido, creo que
+						la manera mas brusca de solucionar y establecer un orden sería esta: -->
+						<group>
+							<field name="name"/>
+						</group>
+						<group>
+							<field name="description"/>
+							<field name="amount"/>
+							<field name="worker_id"/>
+							<field name="band_id"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="album_search_view">
+			<field name="name">album.search</field>
+			<field name="model">samplerecords.album</field>
+			<field name ="arch" type="xml">
+				<search>
+					<field name="name"/>
+					<field name ="description"/>
+					<field name="amount"/>
+					<field name = "worker_id"/>
+					<field name="band_id"/>
+				</search>
+			</field>
+		</record>
+
+		<!-- VISTAS DE TRABAJADORES -->
+
+		<record model="ir.actions.act_window" id="worker_list_action">
+			<field name="name">Trabajadores</field>
+			<field name="res_model">samplerecords.worker</field>
+				<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+			<p class="oe_view_nocontent_create">Crear el primer trabajador</p>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="album_form_view">
+			<field name="name">worker.form</field>
+			<field name="model">samplerecords.worker</field>
+			<field name ="arch" type="xml">
+				<form string="Formulario Trabajador">					
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="description"/>
+							<field name="edad"/>
+							<field name = "album_ids"></field>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="album_search_view">
+			<field name="name">worker.search</field>
+			<field name="model">samplerecords.worker</field>
+			<field name ="arch" type="xml">
+				<search>
+					
+					<field name="name"/>
+					<field name ="description"/>
+					<field name="edad"/>
+					<field name = "album_ids"></field>
+
+				</search>
+			</field>
+		</record>
+
+				<!-- VISTAS DE BANDAS -->
+		
+		<!-- action = mostrar vista por defecto (lista / form)-->
+		<record model="ir.actions.act_window" id="band_list_action">
+			<field name="name">Bandas</field>
+			<field name="res_model">samplerecords.band</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+			<p class="oe_view_nocontent_create">Crear la primera banda</p>
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="band_form_view">
+			<field name="name">band.form</field>
+			<field name="model">samplerecords.band</field>
+			<field name ="arch" type="xml">
+				<form string="Formulario Bandas">					
+					<sheet>
+						<group>
+							<field name="name"/>
+						</group>
+						<group>
+							<field name="description"/>
+							<field name="miembros"/>
+							<field name="album_ids"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="band_search_view">
+			<field name="name">band.search</field>
+			<field name="model">samplerecords.band</field>
+			<field name ="arch" type="xml">
+				<search>
+					
+					<field name="name"/>
+					<field name ="description"/>
+					<field name="miembros"/>
+					<field name = "album_ids"/>
+
+				</search>
+			</field>
+		</record>
+
+		<!-- top level menu: sin padre -->
+		<menuitem id="main_samplerecords_menu" name="Sample Records"/>
+
+		<!-- Primer nivel de menu antes de usar la acción -->
+		<menuitem id="samplerecords_menu" name="Sample Records"
+
+			parent="main_samplerecords_menu"/>
+
+		<!-- ahora si, elemento de menu para la accion -->
+		<menuitem id="workers_menu" name="Trabajadores"
+		parent="samplerecords_menu" action="worker_list_action"/>
+
+		<menuitem id="albumes_menu" name="Albumes"
+		parent="samplerecords_menu" action="album_list_action"/>
+
+		<menuitem id="band_menu" name="Artistas"
+		parent="samplerecords_menu" action="band_list_action"/>
+	</data>
+</odoo>

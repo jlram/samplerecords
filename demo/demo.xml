@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+
+        <record model="samplerecords.worker" id="Worker0">
+            <field name="name">Juan Antonio</field>
+            <field name="description">Técnico Superior de Imagen y Sonido. Especialista en Rock y Metal</field>
+        </record>
+
+        <record model="samplerecords.worker" id="Worker1">
+            <field name="name">Carmen</field>
+            <field name="description">Fundadora. Especialista en Pop</field>
+        </record>
+
+        <record model="samplerecords.band" id="Band0">
+            <field name="name">Wild Animals</field>
+            <field name="miembros">3</field>
+            <field name="description">Banda de indie-rock/punk de Madrid</field>
+        </record>
+
+    </data>
+</odoo>
